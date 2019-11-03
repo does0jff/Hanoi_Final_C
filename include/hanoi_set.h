@@ -27,5 +27,5 @@ int get_move_count(ptr_hanoi_set set);
 int add_move_count(ptr_hanoi_set set);
 ptr_hanoi_tower find_disk(int disk);
 int move_disk(ptr_hanoi_tower origin, ptr_hanoi_tower destination);
-int game_over(ptr_hanoi_set set);
+int is_game_over(ptr_hanoi_set set);
 #endif // HANOI_SET_H
