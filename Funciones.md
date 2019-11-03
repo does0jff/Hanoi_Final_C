@@ -14,12 +14,11 @@ El juego continua hasta que el usuario gana, el juego muestra en pantalla un con
 
 Calculada con la siguiente formula:
 
-```
-maximo de movimientos = M
-numero de discos = N
+$$ M = 2^{N} -1 $$
 
-M = (2^n) - 1
-```
+> maximo de movimientos = M
+
+> numero de discos = N
 
 ## MODULOS Y SECCIONES
 El juego se compone de multiples modulos que controlan el comportamiento de una parte diferente de programa:
