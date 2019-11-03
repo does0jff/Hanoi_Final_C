@@ -1,4 +1,4 @@
-#if !defined(STACK_H)
+#if !defined(STACKH)
 #define STACK_H
 
 #include <stdlib.h>

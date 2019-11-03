@@ -24,7 +24,7 @@ struct hanoi_disk
 {
     int disk_number;
     int current_tower;
-    int is_odd_number;
+    int odd_flag;
     ptr_hanoi_disk next;
 };
 
