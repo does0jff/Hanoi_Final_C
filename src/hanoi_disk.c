@@ -1,41 +1,20 @@
 #include "hanoi_disk.h"
 
-ptr_hanoi_disk create_disk(int disk_number)
+ptr_hanoi_disk create_disk(int disk_number,int tower_id)
 {
-    int i;
-    ptr_hanoi_disk root;
-    ptr_hanoi_disk current;
-    ptr_hanoi_disk temp;
+    ptr_hanoi_disk new_disk = malloc(sizeof(*new_disk));
 
-    for ( i = 0; i < disk_number; i++)
-    {
-        temp = calloc(1,sizeof(*temp));
-        temp->disk_number = i+1;
-        temp->odd_flag = IS_ODD(temp->disk_number);
-        temp->next = NULL;
-        if(i == 0)
-        {
-            root = temp;
-            current = root;
-        }
-        else
-        {
-            current->next = temp;
-            current = current->next;
-        }
-    }
-    return root;
+    if(new_disk == NULL)
+        return NULL;
+    new_disk->disk_number = disk_number;
+    new_disk->odd_flag = IS_ODD(disk_number);
+    if(tower_id != -1)
+        new_disk->current_tower = tower_id;
+    return new_disk;
 }
 
 int is_disk_move_valid(ptr_hanoi_disk origin, ptr_hanoi_disk destination)
 {
-    if(origin->odd_flag && destination->odd_flag)
-    {
-        if(origin->odd_flag == ODD_NUMBER)
-            return ERROR_BOTH_ODD;
-        if(origin->odd_flag == PAIR_NUMBER)
-            return ERROR_BOTH_PAIR;
-    }
     if(origin->disk_number > destination->disk_number)
         return ERROR_BIG_ORIGIN;
     return MOVE_OK;

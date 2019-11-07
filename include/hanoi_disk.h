@@ -28,7 +28,7 @@ struct hanoi_disk
     ptr_hanoi_disk next;
 };
 
-ptr_hanoi_disk create_disk(int disk_number);
+ptr_hanoi_disk create_disk(int disk_number,int tower_id);
 int is_disk_move_valid(ptr_hanoi_disk origin, ptr_hanoi_disk destination);
 void destroy_disk(ptr_hanoi_disk disk);
 #endif // HANOI_DISK_H
