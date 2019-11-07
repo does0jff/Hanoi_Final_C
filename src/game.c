@@ -42,11 +42,19 @@ void clear_screen(void)
 	system(CLEAR_SCREEN);
 }
 
+static int number_cmp(int a, int b)
+{
+	return (a > b)? a:b;
+}
+
 void print_set(ptr_hanoi_set set)
 {
-	int t1_disk_number;
-	int t2_disk_number;
-	int t3_disk_number;
+	int t1_disk_number = set->tower_1->disk_count;
+	int t2_disk_number = set->tower_2->disk_count;
+	int t3_disk_number = set->tower_3->disk_count;
+	ptr_hanoi_disk t1_disk = set->tower_1->head;
+	ptr_hanoi_disk t2_disk = set->tower_2->head;
+	ptr_hanoi_disk t3_disk = set->tower_3->head;
 
 	
 }
