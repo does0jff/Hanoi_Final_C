@@ -1,5 +1,12 @@
 #include "hanoi_disk.h"
 
+/**
+ * @brief Crea una instancia de la estructura hanoi_disk, regresa 
+ * 
+ * @param disk_number 
+ * @param tower_id 
+ * @return ptr_hanoi_disk 
+ */
 ptr_hanoi_disk create_disk(int disk_number,int tower_id)
 {
     ptr_hanoi_disk new_disk = malloc(sizeof(*new_disk));
