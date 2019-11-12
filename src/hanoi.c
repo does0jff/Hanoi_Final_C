@@ -21,26 +21,29 @@ int main(int argc, char const *argv[])
             return -1;
         }
     }
-
-    while(disk_num == -1)
+    else if(argc == 1)
     {
-        clear_screen();
-        if(first_time_flag)
+        while(disk_num == -1)
         {
-            printf("Ingrese el numero de discos con los que desea jugar: ");
-            first_time_flag = 0;
+            clear_screen();
+            if(first_time_flag)
+            {
+                printf("Ingrese el numero de discos con los que desea jugar: ");
+                first_time_flag = 0;
+            }
+            else
+            {
+                printf("Error, el valor insertado no es numerico\n");
+                printf("Ingrese el numero de discos con los que desa jugar: ");
+            }
+            fgets(line,MAX_LINE,stdin);
+            disk_num = read_number(line);
         }
-        else
-        {
-            printf("Error, el valor insertado no es numerico\n");
-            printf("Ingrese el numero de discos con los que desa jugar: ");
-        }
-        fgets(line,MAX_LINE,stdin);
-        disk_num = read_number(line);
     }
 
     game_set = create_set(disk_num);
     start_game(game_set);
+
     printf("Sus estadisticas fueron:\n");
     printf("Numero de movimientos [%d]\tNumero optimo de movimientos [%d]\n",game_set->move_count,game_set->max_move_count);
     if(game_set->move_count == game_set->max_move_count)
