@@ -1,4 +1,4 @@
-#include <game.h>
+#include "game.h"
 
 int main(int argc, char const *argv[])
 {
@@ -7,7 +7,7 @@ int main(int argc, char const *argv[])
     char line[MAX_LINE];
     ptr_hanoi_set game_set;
 
-    if((argc != 1) || (argc != 2))
+    if(argc > 2)
     {
         printf("Error en el numero de parametros [%d], favor de verificar\n",argc);
         printf("%s [disk_num]\n",argv[0]);
@@ -15,9 +15,9 @@ int main(int argc, char const *argv[])
     }
     else if(argc == 2)
     {
-        if((disk_num = read_number(argv[argc-1])) == -1)
+        if((disk_num = read_number((char *) argv[argc-1])) == -1)
         {
-            prinf("Error, el valor insertado debe ser numerico [%s]\n",argv[argc-1]);
+            printf("Error, el valor insertado debe ser numerico [%s]\n",argv[argc-1]);
             return -1;
         }
     }

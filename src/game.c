@@ -175,7 +175,6 @@ int read_destination(void)
 
 int read_number(char *line)
 {
-	fgets(line,MAX_LINE,stdin);
 	if(is_number(line))
 		return atoi(line);
 	return -1;
