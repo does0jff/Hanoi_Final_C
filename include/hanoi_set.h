@@ -1,6 +1,9 @@
 #if !defined(HANOI_SET_H)
 #define HANOI_SET_H
 
+#ifdef DEBUG
+#include <stdio.h>
+#endif // DEBUG
 #include <stdlib.h>
 #include <math.h>
 #include "stack.h"

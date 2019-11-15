@@ -4,15 +4,15 @@ int start_game(ptr_hanoi_set set)
 {
     int requested_disk;
     int requested_tower;
-    int error_code;
+    int error_code = WELCOME_CODE;
     int tower_index;
     ptr_hanoi_tower tower_array[3] = {set->tower_1,set->tower_2,set->tower_3};
 
     while(is_game_over(set) != WIN_CODE)
     {
         clear_screen();
-        if(set->move_count == 0)
-            print_error_message(WELCOME_CODE);
+        if(error_code != MOVE_OK)
+            print_error_message(error_code);
        	print_set(set);
        	requested_disk = read_origin();
        	if((tower_index = find_disk(set,requested_disk)) != DISK_NOT_FOUND)
@@ -22,14 +22,14 @@ int start_game(ptr_hanoi_set set)
 			    requested_tower == SET_TOWER_2 || requested_tower == SET_TOWER_3))
 			{
            		error_code = move_disk(tower_array[tower_index],tower_array[requested_tower]);
-				if(error_code != MOVE_OK)
-					print_error_message(error_code);
+				if(error_code == MOVE_OK)
+					set->move_count++;
 			}
 			else
-				print_error_message(requested_tower);
+				error_code = ERROR_TOWER_NOT_FOUND;
        	}
 		else
-			print_error_message(DISK_NOT_FOUND);
+			error_code = DISK_NOT_FOUND;
     }
 	clear_screen();
 	print_error_message(WIN_CODE);
@@ -40,7 +40,9 @@ int start_game(ptr_hanoi_set set)
 
 void clear_screen(void)
 {
+	#ifndef DEBUG
 	system(CLEAR_SCREEN);
+	#endif // DEBUG
 }
 
 static int get_max_number(int a, int b, int c)
@@ -119,10 +121,10 @@ void print_error_message(int code)
 		break;
 		case ERROR_BIG_ORIGIN:
 		printf("*%*cError, el movimiento solicitado es ilegal%*c*\n",14,SPACE_CHAR,13,SPACE_CHAR);
-		printf("*%*cNo es posible insertar un disco grande sobre uno pequenio%*c*\n",10,SPACE_CHAR,9,SPACE_CHAR);
+		printf("*%*cNo es posible insertar un disco grande sobre uno pequenio%*c*\n",5,SPACE_CHAR,5,SPACE_CHAR);
 		break;
 		case WIN_CODE:
-		printf("*%*cFelicidades, usted ha ganado el juego de los discos%*c*",9,SPACE_CHAR,9,SPACE_CHAR);
+		printf("*%*cFelicidades, usted ha ganado el juego de los discos%*c*\n",9,SPACE_CHAR,8,SPACE_CHAR);
 		break;
 		case DISK_NOT_FOUND:
 		printf("*%*cError, el disco solicitado no se encuentra disponible o no existe%*c*\n",2,SPACE_CHAR,1,SPACE_CHAR);
@@ -134,7 +136,7 @@ void print_error_message(int code)
 		printf("*%*cMueva los discos desde la torre de origen hasta la torre destino%*c*\n",2,SPACE_CHAR,2,SPACE_CHAR);
 		break;
 		case ERROR_TOWER_NOT_FOUND:
-		printf("*%*cError, La torre solicitada no esta disponible o no existe%*c*\n",10,SPACE_CHAR,9,SPACE_CHAR);
+		printf("*%*cError, La torre solicitada no esta disponible o no existe%*c*\n",5,SPACE_CHAR,6,SPACE_CHAR);
 		break;
 		case ERROR_UNHANDLED:
 		default:
@@ -160,9 +162,15 @@ int is_number(char *snum)
 int read_origin(void)
 {
 	char line[MAX_LINE];
+	int is_valid_number;
 
 	printf("Escriba el numero del disco que desea Mover:\t");
-	return read_number(line);
+	if((is_valid_number = read_number(line)) == -1)
+	{
+		printf("El numero de disco insertado no es valido\n");
+		printf("Hint: Solo debe ingresar numeros y pulsar ENTER\n");
+	}
+	return is_valid_number;
 }
 
 int read_destination(void)
@@ -170,12 +178,13 @@ int read_destination(void)
 	char line[MAX_LINE];
 
 	printf("Escriba el numero del torre que desea Mover:\t");
-	return read_number(line);
+	return read_number(line) - 1;
 }
 
 int read_number(char *line)
 {
-	if(is_number(line))
+    fgets(line,MAX_LINE,stdin);
+	if(!is_number(line))
 		return atoi(line);
 	return -1;
 }

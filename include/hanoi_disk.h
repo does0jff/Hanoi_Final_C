@@ -2,6 +2,9 @@
 #define HANOI_DISK_H
 
 // Librerias incluidas
+#ifdef DEBUG
+#include <stdio.h>
+#endif // DEBUG
 #include <stdlib.h>
 
 // Calcula si un numero es impar

@@ -1,6 +1,9 @@
 #if !defined(STACKH)
 #define STACK_H
 
+#ifdef DEBUG
+#include <stdio.h>
+#endif // DEBUG
 #include <stdlib.h>
 #include "hanoi_disk.h"
 

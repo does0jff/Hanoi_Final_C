@@ -36,7 +36,6 @@ int main(int argc, char const *argv[])
                 printf("Error, el valor insertado no es numerico\n");
                 printf("Ingrese el numero de discos con los que desa jugar: ");
             }
-            fgets(line,MAX_LINE,stdin);
             disk_num = read_number(line);
         }
     }
