@@ -89,17 +89,11 @@ int find_disk(ptr_hanoi_set set,int disk)
     // el stack de la torre este vacio, la torre es descartada
     if((temp_disk = peek_disk(set->tower_1)) != NULL)
     {
-        #ifdef DEBUG
-        printf("Find_disk: Torre 1 tiene discos\n");
-        #endif // DEBUG
         // Guarda el valor del primer disco en la torre 
         peek1 = temp_disk->disk_number;
         // Si el valor encontrado en la torre 0 corresponde con el buscado (disk)
         if(disk == peek1)
         {
-            #ifdef DEBUG
-            printf("Find_disk: Se encontro disco en torre 1\n");
-            #endif // DEBUG
             // Regresa el id de la torre (0)
             return SET_TOWER_1;
         }
@@ -108,17 +102,11 @@ int find_disk(ptr_hanoi_set set,int disk)
     // el stack de la torre este vacio, la torre es descartada
     if((temp_disk = peek_disk(set->tower_2)) != NULL)
     {
-        #ifdef DEBUG
-        printf("Find_disk: Torre 2 tiene discos\n");
-        #endif // DEBUG
         // Guarda el valor del primer disco en la torre 
         peek2 = temp_disk->disk_number;
         // Si el valor encontrado en la torre 1 corresponde con el buscado (disk)
         if(disk == peek2)
         {
-            #ifdef DEBUG
-            printf("Find_disk: Se encontro disco en torre 2\n");
-            #endif // DEBUG
             // Regresa el id de la torre (1)
             return SET_TOWER_2;
         }
@@ -127,17 +115,11 @@ int find_disk(ptr_hanoi_set set,int disk)
     // el stack de la torre este vacio, la torre es descartada
     if((temp_disk = peek_disk(set->tower_3)) != NULL)
     {
-        #ifdef DEBUG
-        printf("Find_disk: Torre 3 tiene discos\n");
-        #endif // DEBUG
         // Guarda el valor del primer disco en la torre 
         peek3 = temp_disk->disk_number;
         // Si el valor encontrado en la torre 2 corresponde con el buscado (disk)
         if(disk == peek3)
         {
-            #ifdef DEBUG
-            printf("Find_disk: Se encontro disco en torre 3\n");
-            #endif // DEBUG
             // Regresa el id de la torre (2)
             return SET_TOWER_3;
         }
@@ -177,10 +159,6 @@ int move_disk(ptr_hanoi_tower origin, ptr_hanoi_tower destination)
     case MOVE_OK:
         // Saca el disco de Origin
         origin_peek = pop_disk(origin);
-        #ifdef DEBUG
-        if(origin_peek->current_tower == -1)
-            printf("move_disk: pop exitoso\n");
-        #endif // DEBUG
         // Lo ingresa en destination
         push_disk(origin_peek,destination);
         // Regresa el codigo MOVE_OK que indica que el movimiento fue exitoso

@@ -16,9 +16,6 @@ ptr_hanoi_disk create_disk(int disk_number,int tower_id)
     // Si la memoria no fue asignada regresa NULL
     if(new_disk == NULL)
     {
-        #ifdef DEBUG
-        printf("create_disk: Fallo creacion de disco %d en la torre %d\n",disk_number,tower_id);
-        #endif // DEBUG
         return NULL;
     }
     // Asigna al disco su propiedades: disk_number, odd_flag,current_tower.
@@ -26,9 +23,6 @@ ptr_hanoi_disk create_disk(int disk_number,int tower_id)
     new_disk->odd_flag = IS_ODD(disk_number);
     if(tower_id != -1)
         new_disk->current_tower = tower_id;
-    #ifdef DEBUG
-    printf("create_disk: Disco %d creado en la torre %d\n",disk_number,tower_id);
-    #endif // DEBUG
     // regresa el nuevo disco con las propiedades establecidas.
     return new_disk;
 }

@@ -3,9 +3,6 @@
 #define STACK_H
 
 // Archivos incluidos para el funcionamiento de stack.h
-#ifdef DEBUG
-#include <stdio.h>
-#endif // DEBUG
 #include <stdlib.h>
 #include "hanoi_disk.h"
 

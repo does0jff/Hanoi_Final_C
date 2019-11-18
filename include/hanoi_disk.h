@@ -3,9 +3,6 @@
 #define HANOI_DISK_H
 
 // Librerias incluidas
-#ifdef DEBUG
-#include <stdio.h>
-#endif // DEBUG
 // Utiliza la libreria stdlib.h por las funciones de asignacion de memoria
 #include <stdlib.h>
 

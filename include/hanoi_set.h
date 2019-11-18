@@ -3,9 +3,6 @@
 #define HANOI_SET_H
 
 // Librerias incluidas para el hanoi_set
-#ifdef DEBUG
-#include <stdio.h>
-#endif // DEBUG
 #include <stdlib.h>
 #include <math.h>
 #include "stack.h"

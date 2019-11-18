@@ -83,9 +83,6 @@ int start_game(ptr_hanoi_set set)
  ************************************************************/
 void clear_screen(void)
 {
-	#ifndef DEBUG
-	system(CLEAR_SCREEN);
-	#endif // DEBUG
 }
 
 /************************************************************

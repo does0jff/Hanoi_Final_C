@@ -40,19 +40,11 @@ ptr_hanoi_tower create_tower(int id,int disk_count)
 
             if(tower->head == NULL)
             {
-                #ifdef DEBUG
-                printf("create_tower: Agregando cabeza %d" 
-                "a la torre %d\n",temp->disk_number,temp->current_tower);
-                #endif // DEBUG
                 tower->head = temp;
                 current = tower->head;
             }
             else
             {
-                #ifdef DEBUG
-                printf("create_tower: Agregando disco %d" 
-                "a la torre %d\n",temp->disk_number,temp->current_tower);
-                #endif // DEBUG
                 current->next = temp;
                 current = current->next;
             }            
@@ -62,15 +54,6 @@ ptr_hanoi_tower create_tower(int id,int disk_count)
     // Para que la torre siempre conozca cuantos discos existen en ella.
     tower->disk_count = disk_count;
 
-    #ifdef DEBUG
-    ptr_hanoi_disk otemp = tower->head;
-    
-    while(otemp != NULL)
-    {
-        printf("create_tower: Iterando sobre disco %d\n",otemp->disk_number);
-        otemp = otemp->next;
-    }
-    #endif // DEBUG
     // Regresa el apuntador a la nueva torre.
     return tower;
 }
@@ -117,15 +100,9 @@ ptr_hanoi_disk pop_disk(ptr_hanoi_tower tower)
     // Revisa si la torre no tenia discos y regresa NULL si ese es el caso
     if(disk == NULL || tower->disk_count <= 0)
     {
-        #ifdef DEBUG
-        printf("pop_disk: No hay discos en la torre %d\n",tower->tower_id);
-        #endif // DEBUG
         return NULL;
     }
 
-    #ifdef DEBUG
-    printf("pop_disk: Realizando Pop en la torre %d\n",tower->tower_id);
-    #endif // DEBUG
     // Si hay mas de 1 disco dentro de la torre, obtiene el primero y hace que el segundo disco
     // avance de puesto.
     if(tower->disk_count > 1)
@@ -160,30 +137,18 @@ void push_disk(ptr_hanoi_disk disk,ptr_hanoi_tower tower)
     // Si el disco o la torre son NULL, no se realizara ninguna accion
     if(disk == NULL || tower == NULL)
     {
-        #ifdef DEBUG
-        if(disk == NULL)
-            printf("push_disk: El disco a insertar es nulo, no se realiza ninguna accion\n");
-        else
-            printf("push_disk: La torre solicitada es nula, no se realiza ninguna accion\n");
-        #endif // DEBUG
         return;
     }
 
     // Si el stack de la torre esta vacio ingresa el disco en la primera posicion del stack.
     if(tower->head == NULL)
     {
-        #ifdef DEBUG
-        printf("push_disk: Agregando nuevo disco a la cabeza de la torre %d\n",tower->tower_id);
-        #endif // DEBUG
         tower->head = disk;
     }
     // Si el stack no esta vacio, empuja el disco de la primera posicion a la segunda para
     // posteriormente insertar disk en la primera posicion del stack de la torre
     else
     {
-        #ifdef DEBUG
-        printf("push_disk: Agregando nuevo disco a la torre %d\n",tower->tower_id);
-        #endif // DEBUG
         // Empuja el primer disco del stack a la segunda posicion
         disk->next = tower->head;
         // Vuelve a disk el disco de la primera posicion dentro del stack de la torre
